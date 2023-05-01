@@ -1,0 +1,33 @@
+# Default values for helm-package.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 3
+app:
+  port: 3000
+image:
+  repository: "ghcr.io/horsesdeveloper/pacifico-api-nestjs-backend"
+  pullPolicy: Always
+  tag: "66275f016957f9da582fefc4834758ba274ca44c"
+labels:
+  env: development
+  customer: pacifico
+service:
+  type: ClusterIP
+  port: 80
+ingress:
+  enabled: true
+  email: piero@gmail.com
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+    kubernetes.io/ingress.class: nginx
+  # kubernetes.io/ingress.class: nginxs
+  # kubernetes.io/tls-acme: "true"
+  host: chart-example.com
+resources:
+  limits:
+    cpu: 100m
+    memory: 128Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi
