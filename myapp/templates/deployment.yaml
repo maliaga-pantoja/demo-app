@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Chart.Name }}
+  labels:
+  {{- range $key, $val := .Values.labels }}
+    {{ $key }}: {{ $val | quote }}
+  {{- end }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+    {{- range $key, $val := .Values.labels }}
+      {{ $key }}: {{ $val | quote }}
+    {{- end }}
+  template:
+    metadata:
+      labels:
+      {{- range $key, $val := .Values.labels }}
+        {{ $key }}: {{ $val | quote }}
+      {{- end }}
+    spec:
+      imagePullSecrets:
+        - name: {{ .Chart.Name }}
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: {{ .Values.app.port }}
+              protocol: TCP
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
