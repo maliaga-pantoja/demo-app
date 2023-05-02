@@ -23,7 +23,7 @@ ingress:
     kubernetes.io/ingress.class: nginx
   # kubernetes.io/ingress.class: nginxs
   # kubernetes.io/tls-acme: "true"
-  host: resh-dev-tc.tracklink.pe
+  host: resh-prod-tc.tracklink.pe
 resources:
   limits:
     cpu: 100m
