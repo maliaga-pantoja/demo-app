@@ -12,6 +12,7 @@ image:
 labels:
   env: development
   customer: pacifico
+  role: demo-app
 service:
   type: ClusterIP
   port: 80
