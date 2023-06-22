@@ -4,11 +4,11 @@
 
 replicaCount: 3
 app:
-  port: 3000
+  port: 80
 image:
-  repository: "ghcr.io/horsesdeveloper/pacifico-api-nestjs-backend"
+  repository: "nginx"
   pullPolicy: Always
-  tag: "66275f016957f9da582fefc4834758ba274ca44c"
+  tag: "latest"
 labels:
   env: development
   customer: pacifico
@@ -24,7 +24,7 @@ ingress:
     kubernetes.io/ingress.class: nginx
   # kubernetes.io/ingress.class: nginxs
   # kubernetes.io/tls-acme: "true"
-  host: resh-prod-tc.tracklink.pe
+  host: demo-prod-tc.tracklink.pe 
 resources:
   limits:
     cpu: 100m
